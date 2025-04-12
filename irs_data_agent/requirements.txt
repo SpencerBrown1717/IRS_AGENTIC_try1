@@ -1,1 +1,4 @@
-
+requests>=2.25.0
+pydantic>=1.8.0
+typer>=0.3.2
+rich>=10.0.0
