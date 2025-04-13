@@ -1,1 +1,51 @@
+# IRS Data Agent Configuration
 
+# API settings
+api:
+  base_url: "https://api.irs.gov/"
+  timeout: 30
+  max_retries: 3
+  retry_delay: 2
+  rate_limits:
+    requests_per_minute: 60
+    requests_per_day: 5000
+
+# Agent settings
+agents:
+  planning:
+    max_plan_steps: 10
+    plan_timeout: 30
+  retrieval:
+    batch_size: 5
+    max_parallel_requests: 3
+    request_timeout: 15
+  processing:
+    max_items_per_batch: 100
+    parallelize: true
+    num_workers: 4
+  error:
+    max_retry_attempts: 3
+    report_errors: true
+    error_log_path: "logs/errors.log"
+
+# Cache settings
+cache:
+  enabled: true
+  ttl: 86400  # 24 hours in seconds
+  max_size_mb: 100
+  location: ".cache"
+
+# Logging settings
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: "logs/irs_data_agent.log"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  rotate: true
+  max_size_mb: 10
+  backup_count: 5
+
+# Output settings
+output:
+  default_format: "text"  # text, json, csv
+  color_enabled: true
+  max_results: 100
